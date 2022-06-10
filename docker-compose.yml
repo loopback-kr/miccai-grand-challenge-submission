@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  cv_cuda:
+    container_name: AtlasEvaluation
+    hostname: AtlasEvaluation
+    image: atlas3
+    tty: true
+    stdin_open: true
+    shm_size: 64G
+    volumes:
+      - /root/projects/nnUNet/atlas2_grand_challenge:/root/workspace/
+    environment:
+      - TZ=Asia/Seoul
+      - LC_ALL=C.UTF-8
+      - LANG=C.UTF-8
