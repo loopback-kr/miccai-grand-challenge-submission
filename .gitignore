@@ -1,8 +1,6 @@
-input/*
-ground-truth/*
 __pycache__
-metrics.json
-metric*.json
-output_*
-nnUNet_*
-final_*
+*.nii.gz
+*.zip
+*.json
+*.pkl
+*.npz
