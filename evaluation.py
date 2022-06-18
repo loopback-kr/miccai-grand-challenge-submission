@@ -93,13 +93,6 @@ def make_subloader_and_evaluate(data_list, data_shape, target_list, target_shape
     local_loader.target_shape = target_shape  # Needed since sample image is 1x1x1
     return evaluate(local_loader, eval_settings['ScoringFunctions'])
 
-def crc_check():
-    for path in tqdm(sorted(list(iglob('final_predictions_zip2/**/*.nii.gz', recursive=True)))):
-        try:
-            lbl = nib.load(path).get_fdata()
-        except Exception as e:
-            tqdm.write(path)
-            tqdm.write(e.__str__())
 
 if __name__ == "__main__":
     # Create data_description.json
