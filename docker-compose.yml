@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   AtlasChallenge:
-    container_name: AtlasEvaluation
+    container_name: AtlasEvaluation-runtime
     hostname: AtlasEvaluation
     image: atlas-challenge
     tty: true
@@ -10,7 +10,9 @@ services:
     shm_size: 64G
     volumes:
       - /root/projects/atlas2_grand_challenge:/root/workspace/
+      - /root/nnUNet/outputs:/root/workspace/outputs
     environment:
       - TZ=Asia/Seoul
       - LC_ALL=C.UTF-8
       - LANG=C.UTF-8
+    entrypoint: python3 convert_to_BIDS.py
