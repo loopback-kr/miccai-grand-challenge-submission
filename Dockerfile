@@ -2,6 +2,7 @@ FROM ubuntu:20.04
 
 
 ### Set environment variables
+USER root
 # Change default Shell to bash
 SHELL ["/bin/bash", "-c"]
 # Set Timezone
@@ -19,7 +20,8 @@ RUN mkdir -p ~/.config/pip \
         > ~/.config/pip/pip.conf
 
 # Copy files
-COPY isles isles
+COPY isles /root/workspace/isles
+COPY *.py /root/workspace/./
 
 # Install essential packages
 RUN apt update \
@@ -46,3 +48,4 @@ RUN apt clean \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /root/workspace
+ENTRYPOINT [ "python3", "convert_to_BIDS.py"]

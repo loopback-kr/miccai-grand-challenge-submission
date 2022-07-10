@@ -15,4 +15,5 @@ services:
       - TZ=Asia/Seoul
       - LC_ALL=C.UTF-8
       - LANG=C.UTF-8
+      - MODEL_PREDICTION_DIR=<YOUR-OUTPUT-DIR>
     entrypoint: python3 convert_to_BIDS.py
