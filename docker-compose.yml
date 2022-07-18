@@ -4,13 +4,13 @@ services:
   AtlasChallenge:
     container_name: AtlasEvaluation-runtime
     hostname: AtlasEvaluation
-    image: atlas-challenge
+    image: atlas-evaluation
     tty: true
     stdin_open: true
     shm_size: 64G
     volumes:
-      - /root/projects/atlas2_grand_challenge:/root/workspace/
-      - /root/nnUNet/outputs:/root/workspace/outputs
+      - /root/projects/nnUNet/atlas2_grand_challenge:/root/workspace/
+      - /root/projects/nnUNet/outputs:/root/workspace/outputs
     environment:
       - TZ=Asia/Seoul
       - LC_ALL=C.UTF-8

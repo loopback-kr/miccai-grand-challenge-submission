@@ -48,4 +48,3 @@ RUN apt clean \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /root/workspace
-ENTRYPOINT [ "python3", "convert_to_BIDS.py"]

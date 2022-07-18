@@ -6,9 +6,10 @@ from bidsio import BIDSLoader
 from settings import eval_settings
 from tqdm.contrib import tzip
 
+# Define global vars
 model_prediction_dir = os.getenv('MODEL_PREDICTION_DIR', default=None)
-BIDS_formatted_dir = 'BIDS_' + model_prediction_dir[len('output_'):]
-zip_filename = f'{BIDS_formatted_dir[:12]}.zip'
+BIDS_formatted_dir = 'BIDS_' + dirname(model_prediction_dir)
+zip_filename = f'{BIDS_formatted_dir}.zip'
 
 
 def check_integrity(src_dir: str, fname='*.nii.gz', chk_label_1=False):
@@ -64,7 +65,7 @@ def union(src0_dir:str, src1_dir:str, dst_dir:str):
 
 
 if __name__ == '__main__':
-    union(union_src0_dir, union_src1_dir, union_dst_dir)
+    # union(union_src0_dir, union_src1_dir, union_dst_dir)
     convert_to_BIDS(model_prediction_dir, BIDS_formatted_dir)
     BIDSLoader.write_dataset_description(BIDS_formatted_dir, eval_settings['PredictionBIDSDerivativeName'][0])
     check_integrity(BIDS_formatted_dir)
