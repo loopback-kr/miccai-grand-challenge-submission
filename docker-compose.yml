@@ -3,17 +3,16 @@ version: '3.8'
 services:
   AtlasChallenge:
     container_name: AtlasEvaluation-runtime
+    build:
+      context: ${PWD}
+      dockerfile: Dockerfile
     hostname: AtlasEvaluation
-    image: atlas-evaluation
     tty: true
     stdin_open: true
-    shm_size: 64G
+    shm_size: 100g
     volumes:
-      - /root/projects/nnUNet/atlas2_grand_challenge:/root/workspace/
-      - /root/projects/nnUNet/outputs:/root/workspace/outputs
+      - ${PWD}:/workspace/
+      - ${PWD}/../nnUNet:/nnunet
     environment:
-      - TZ=Asia/Seoul
-      - LC_ALL=C.UTF-8
-      - LANG=C.UTF-8
-      - MODEL_PREDICTION_DIR=<YOUR-OUTPUT-DIR>
+      - MODEL_PREDICTION_DIR=output
     entrypoint: python3 convert_to_BIDS.py

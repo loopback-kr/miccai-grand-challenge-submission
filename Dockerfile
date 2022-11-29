@@ -1,8 +1,8 @@
-FROM ubuntu:20.04
+FROM python:3.11.0-slim
 
+WORKDIR /workspace
 
 ### Set environment variables
-USER root
 # Change default Shell to bash
 SHELL ["/bin/bash", "-c"]
 # Set Timezone
@@ -20,31 +20,18 @@ RUN mkdir -p ~/.config/pip \
         > ~/.config/pip/pip.conf
 
 # Copy files
-COPY isles /root/workspace/isles
-COPY *.py /root/workspace/./
+COPY isles isles
+COPY *.py .
+COPY requirements.txt requirements.txt
 
-# Install essential packages
+### Setup requirements
 RUN apt update \
     && apt install -y \
-        tzdata \
-        beep \
-        wget \
-        git \
-        zip \
-        ca-certificates \
-        apt-transport-https \
-        python3 \
-        python3-pip
+        libglu1-mesa-dev \
+        libglib2.0-0 \
+        libsm6 \
+        libxext6 \
+        libxrender-dev
 
-RUN pip install \
-        numpy \
-        nibabel \
-        tqdm \
-        git+https://github.com/npnl/bidsio \
-        scikit-learn
-
-# Clean the cache
-RUN apt clean \
-    && rm -rf /var/lib/apt/lists/*
-
-WORKDIR /root/workspace
+RUN pip install -U pip && \
+    pip install -r requirements.txt
