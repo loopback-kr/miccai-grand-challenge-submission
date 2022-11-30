@@ -11,7 +11,7 @@ services:
     stdin_open: true
     shm_size: 100g
     volumes:
-      - ${PWD}:/workspace/
+      - ${PWD}:/workspace
       - ${PWD}/../nnUNet:/nnunet
     environment:
       - MODEL_PREDICTION_DIR=/nnunet/outputs/output_Task500_ATLAS_ATLAS_500EP
