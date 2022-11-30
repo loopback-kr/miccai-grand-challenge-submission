@@ -1,4 +1,4 @@
-FROM python:3.11.0-slim
+FROM python:3.8.0
 
 WORKDIR /workspace
 
@@ -31,7 +31,10 @@ RUN apt update \
         libglib2.0-0 \
         libsm6 \
         libxext6 \
-        libxrender-dev
+        libxrender-dev \
+        git \
+        zip
+        # cmake \
 
 RUN pip install -U pip && \
     pip install -r requirements.txt

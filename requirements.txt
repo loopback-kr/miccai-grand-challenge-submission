@@ -1,5 +1,5 @@
+scikit-learn==1.0.2
 numpy
 nibabel
 tqdm
 git+https://github.com/npnl/bidsio
-scikit-learn

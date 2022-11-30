@@ -2,8 +2,8 @@ from isles.scoring import dice_coef, volume_difference, simple_lesion_count_diff
   specificity, accuracy, lesion_count_by_weighted_assignment
 
 eval_settings = {
-    "GroundTruthRoot": "/root/workspace/ground-truth/",     # Path to the ground truth
-    "PredictionRoot": "/root/workspace/input/",             # Path to the user predictions
+    "GroundTruthRoot": "/workspace/ground-truth/",     # Path to the ground truth
+    "PredictionRoot": "/workspace/input/",             # Path to the user predictions
     "GroundTruthBIDSDerivativeName": ["atlas2"],            # BIDS derivative name of the ground truth
     "PredictionBIDSDerivativeName": ["atlas2_prediction"],  # BIDS derivative name of the predictions
     "GroundTruthEntities": {                                # BIDS entities identifying the ground truth
@@ -17,8 +17,8 @@ eval_settings = {
     "LoaderBatchSize": 4,                                   # Number of images to load at a time
     "Multiprocessing": 8,                                   # Number of processors to use in parallel
     "Aggregates": ["mean", "std", "min", "max", "25%", "50%", "75%", "count", "uniq", "freq"],  # Summary stats to use
-    "MetricsOutputPath": "/root/workspace/metrics.json",            # Desired location of output summary
-    "SampleBIDS": "/root/workspace/sample_bids/",           # Path to the sample BIDS directory; don't modify.
+    "MetricsOutputPath": "/workspace/metrics.json",            # Desired location of output summary
+    "SampleBIDS": "/workspace/sample_bids/",           # Path to the sample BIDS directory; don't modify.
     "ScoringFunctions": {'Dice': dice_coef,                 # Functions to use for scoring the dataset.
                          'Volume Difference': volume_difference,
                          'Simple Lesion Count': simple_lesion_count_difference,

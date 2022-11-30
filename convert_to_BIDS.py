@@ -1,5 +1,5 @@
 import os, numpy as np, nibabel as nib
-from os.path import join, basename
+from os.path import join, basename, dirname
 from tqdm import tqdm
 from glob import glob, iglob
 from bidsio import BIDSLoader
@@ -8,7 +8,7 @@ from tqdm.contrib import tzip
 
 # Define global vars
 model_prediction_dir = os.getenv('MODEL_PREDICTION_DIR', default=None)
-BIDS_formatted_dir = 'BIDS_' + dirname(model_prediction_dir)
+BIDS_formatted_dir = 'BIDS_' + model_prediction_dir.split('/')[-1]
 zip_filename = f'{BIDS_formatted_dir}.zip'
 
 
