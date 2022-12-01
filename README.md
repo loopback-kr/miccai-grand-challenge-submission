@@ -1,9 +1,10 @@
 # Grand Challenges ISLES 2022 Evaluation Container
 
-## Instuctions
+
+## Instructions
 1. Clone this repository to the same root path as the nnUNet repository.
 2. Define the `volumes` and `MODEL_PREDICTION_DIR` path in `docker-compose.yml`.
-3. Run `docker compose up` to get the submission zip file with BIDS format.
+3. Run `docker compose run --rm eval` to get the submission zip file with BIDS format.
 
 
 ## nnUNet original README

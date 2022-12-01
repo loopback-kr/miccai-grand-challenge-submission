@@ -1,12 +1,11 @@
 version: '3.8'
 
 services:
-  atlas:
-    container_name: AtlasEvaluation-runtime
+  eval:
+    container_name: MICCAI-ISELS-evaluation-runtime
     build:
       context: ${PWD}
       dockerfile: Dockerfile
-    hostname: AtlasEvaluation
     tty: true
     stdin_open: true
     shm_size: 100g
@@ -14,5 +13,5 @@ services:
       - ${PWD}:/workspace
       - ${PWD}/../nnUNet:/nnunet
     environment:
-      - MODEL_PREDICTION_DIR=/nnunet/outputs/output_Task500_ATLAS_ATLAS_500EP
+      - MODEL_PREDICTION_DIR=/nnunet/outputs/output_Task503_ATLAS_ATLAS_500EP
     entrypoint: python3 convert_to_BIDS.py
