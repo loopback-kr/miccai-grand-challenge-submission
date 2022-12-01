@@ -1,5 +1,5 @@
 import os, numpy as np, nibabel as nib
-from os.path import join, basename, dirname
+from os.path import join, basename, dirname, exists
 from tqdm import tqdm
 from glob import glob, iglob
 from bidsio import BIDSLoader
@@ -65,8 +65,11 @@ def union(src0_dir:str, src1_dir:str, dst_dir:str):
 
 
 if __name__ == '__main__':
+    if exists(zip_filename):
+        os.remove(zip_filename)
     # union(union_src0_dir, union_src1_dir, union_dst_dir)
     convert_to_BIDS(model_prediction_dir, BIDS_formatted_dir)
     BIDSLoader.write_dataset_description(BIDS_formatted_dir, eval_settings['PredictionBIDSDerivativeName'][0])
     check_integrity(BIDS_formatted_dir)
+    os.system(f'rm -rf {BIDS_formatted_dir}')
     os.system(f'cd {BIDS_formatted_dir} && zip -qr ../{zip_filename} *')
