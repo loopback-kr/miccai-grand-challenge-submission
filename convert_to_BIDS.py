@@ -14,7 +14,7 @@ zip_filename = f'{BIDS_formatted_dir}.zip'
 
 def check_integrity(src_dir: str, fname='*.nii.gz', chk_label_1=False):
     outlier_paths = []
-    for path in tqdm(sorted(list(iglob(join(src_dir, '**', fname), recursive=True))), desc='CRC Check', colour='green', dynamic_ncols=True):
+    for path in tqdm(sorted(list(iglob(join(src_dir, '**', fname), recursive=True))), desc='CRC Check', colour='BLUE', dynamic_ncols=True):
         try:
             elements = np.unique(np.array(nib.load(path).dataobj))
             if chk_label_1:
