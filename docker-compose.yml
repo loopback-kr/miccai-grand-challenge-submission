@@ -13,5 +13,6 @@ services:
       - ${PWD}:/workspace
       - ${PWD}/../nnUNet:/nnunet
     environment:
-      - MODEL_PREDICTION_DIR=/nnunet/outputs/output_Task503_ATLAS_ATLAS_500EP
+      - CHECK_CRC=False
+      - MODEL_PREDICTION_DIR=/nnunet/outputs/output_Task505_ATLAS_ATLAS_500EP
     entrypoint: python3 convert_to_BIDS.py

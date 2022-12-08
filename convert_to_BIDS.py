@@ -70,6 +70,7 @@ if __name__ == '__main__':
     # union(union_src0_dir, union_src1_dir, union_dst_dir)
     convert_to_BIDS(model_prediction_dir, BIDS_formatted_dir)
     BIDSLoader.write_dataset_description(BIDS_formatted_dir, eval_settings['PredictionBIDSDerivativeName'][0])
-    check_integrity(BIDS_formatted_dir)
+    if os.getenv('CHECK_CRC', default=None) == 'True':
+        check_integrity(BIDS_formatted_dir)
     os.system(f'cd {BIDS_formatted_dir} && zip -qr ../{zip_filename} *')
     os.system(f'rm -rf {BIDS_formatted_dir}')
