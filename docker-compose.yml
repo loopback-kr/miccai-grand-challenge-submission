@@ -11,8 +11,27 @@ services:
     shm_size: 100g
     volumes:
       - ${PWD}:/workspace
-      - ${PWD}/../nnUNet:/nnunet
+      - ${PWD}/../nnUNet:/nnUNet
+      - ${PWD}/../nnUNet2:/nnUNet2
     environment:
       - CHECK_CRC=False
-      - MODEL_PREDICTION_DIR=/nnunet/outputs/output_Task505_ATLAS_ATLAS_500EP
+      - MODEL_PREDICTION_DIR=union/3d-2d1-2d2
     entrypoint: python3 convert_to_BIDS.py
+  
+  
+  union:
+    container_name: Union-Operation
+    build:
+      context: ${PWD}
+      dockerfile: Dockerfile
+    tty: true
+    stdin_open: true
+    volumes:
+      - ${PWD}:/workspace
+      - ${PWD}/../nnUNet:/nnUNet
+      - ${PWD}/../nnUNet2:/nnUNet2
+    environment:
+      - A_PATH=/nnUNet/outputs/output_Task509_ATLAS_ATLAS_500EP
+      - B_PATH=union/2d1-2d2
+      - DST_PATH=union/3d-2d1-2d2
+    entrypoint: python3 union.py

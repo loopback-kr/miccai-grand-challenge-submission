@@ -32,9 +32,10 @@ def chk_CRC(src_dir:str, fname:str='*', recursive:bool=True):
         except Exception as e:
             tqdm.write(path+': '+e.__str__())
 
-def convert_to_BIDS(src_dir:str, dst_dir:str, fname:str='*.nii.gz', recursive:bool=True):
-    for path in tqdm(sorted(list(iglob(join(src_dir, fname), recursive=recursive))), desc='Convert to BIDS', colour='green', dynamic_ncols=True):
+def convert_to_BIDS(src_dir:str, dst_dir:str, fname:str='*.nii.gz'):
+    for path in tqdm(sorted(glob(join(src_dir, fname))), desc='Convert to BIDS', colour='green', dynamic_ncols=True):
         # Directory configuration
+        tqdm.write(path)
         first_dir = 'sub-r'+basename(path)[3:6]+'s'+basename(path)[7:10]
         target_dir = join(dst_dir, first_dir, 'ses-1', 'anat')
         os.makedirs(target_dir, exist_ok=True)

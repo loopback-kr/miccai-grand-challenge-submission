@@ -3,3 +3,4 @@ numpy
 nibabel
 tqdm
 git+https://github.com/npnl/bidsio
+SimpleITK==2.1.1.2
